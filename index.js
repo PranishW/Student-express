@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 const app = express()
-const MongoURI = "mongodb://localhost:27017/Assign3"
+const MongoURI = "mongodb://localhost:27017/student"
 mongoose.connect(MongoURI)
     .then(()=>{
         console.log("Connected to DB")
