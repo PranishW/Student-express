@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Record</title>
+</head>
+
+<body>
+    <h1> Student Data Form</h1>
+    <form action="student" method="post">
+        <div>
+            Student Name :
+            <input type="text" name="studname" required>
+        </div> <br>
+        <div>
+            Student Rollno :
+            <input type="text" name="rollno" required>
+        </div> <br>
+        <div>
+        WAD marks :
+        <input type="text" name="wadmarks" required>
+        </div>  <br>
+        <div>
+        CNS marks :
+        <input type="text" name="cnsmarks" required>
+        </div> <br>
+        <div>
+        DSBDA marks :
+        <input type="text" name="dsbdamarks" required>
+        </div> <br>
+        <div>
+        CC marks :
+        <input type="text" name="ccmarks" required>
+        </div> <br>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <h1>Student Data Table</h1>
+    <table border="1px">
+        <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>WAD Marks</th>
+            <th>CNS Marks</th>
+            <th>DSBDA Marks</th>
+            <th>CC Marks</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr> 
+        <% students.forEach(student=>{%>
+            <tr>
+                <td><%= student.studname %></td>
+                <td><%= student.rollno %></td>
+                <td><%= student.wadmarks %></td>
+                <td><%= student.cnsmarks %></td>
+                <td><%= student.dsbdamarks %></td>
+                <td><%= student.ccmarks %></td>
+                <td>
+                    <form action="student/<%= student._id %>" method="post">
+                        <button type="submit">Update Marks</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="student/<%= student._id %>" method="delete">
+                        <button type="submit">Delete Student</button>
+                    </form>
+                </td>
+            </tr>
+        <%})%>
+    </table>
+    <h1>Student Details </h1>
+    <% students.forEach(student=>{%>
+        <ul>
+            <li>
+                <%= student %> 
+            </li>
+        </ul>
+    <%})%>
+    <h1>No of Records :- <%= students.length %></h1>
+    <h1>List of Students who got above 20 marks in DSBDA</h1>
+    <% students.forEach(student=>{%>
+        <% if(student.dsbdamarks>20){%>
+            <ul>
+                <li><%= student.studname%> &ensp;<%= student.rollno %></li>
+            </ul>
+    <%}})%>
+    <h1>List of Students who got above 25 marks in every subject</h1>
+    <% students.forEach(student=>{%>
+        <% if(student.dsbdamarks>25 && student.wadmarks>25 && student.ccmarks>25 && student.cnsmarks){%>
+            <ul>
+                <li><%= student.studname%> &ensp;<%= student.rollno %></li>
+            </ul>
+    <%}})%>       
+</body>
+
+</html>
