@@ -7,4 +7,4 @@ const StudentSchema = mongoose.Schema({
     dsbdamarks:Number,
     ccmarks:Number
 });
-module.exports = new mongoose.model('Student',StudentSchema);
+module.exports = new mongoose.model('Studentmarks',StudentSchema);
